@@ -10,10 +10,22 @@ async function MakeRandomStr(length) {
     var majLength = maj.length;
     var numLength = num.length;
     if (length > 3) {
+        let c = 0
         for (var i = 0; i < length; i++) {
-            if (i < length / 3) result += min.charAt(Math.floor(Math.random() * minLength));
-            else if (i < length / 3 * 2) result += num.charAt(Math.floor(Math.random() * numLength));
-            else result += maj.charAt(Math.floor(Math.random() * majLength));
+            switch (c) {
+                case 0:
+                    result += min.charAt(Math.floor(Math.random() * minLength));
+                    c++;
+                    break;
+                case 1:
+                    result += num.charAt(Math.floor(Math.random() * numLength));
+                    c++;
+                    break;
+                case 2:
+                    result += maj.charAt(Math.floor(Math.random() * majLength));
+                    c = 0;
+                    break;
+            }
         }
     }
     return result;
